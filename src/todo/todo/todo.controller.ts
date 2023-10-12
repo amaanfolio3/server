@@ -14,7 +14,7 @@ import { todos } from './todos.mock';
 let todosList: TodoDTO[] = todos;
 
 @ApiTags('todos')
-@Controller('todos') // here todos referring to localhost/todos
+@Controller('todos')
 export class TodoController {
   @ApiOperation({ summary: 'Get all todos' })
   @ApiResponse({ status: 200, description: 'Return all todos.' })
@@ -39,8 +39,7 @@ export class TodoController {
   @Put(':id')
   updateTodo(@Param('id') id: string, @Body() todo: TodoDTO): TodoDTO[] {
     todosList = todosList.map((t) => {
-      console.log('>>> -> file: todo.controller.ts:47 -> t->', t);
-      if (t.id.toString() === id) {
+      if (t.id?.toString() === id) {
         return todo;
       }
       return t;
