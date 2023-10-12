@@ -51,7 +51,7 @@ export class TodoController {
   @ApiOperation({ description: 'Delete todo' })
   @Delete(':id')
   deleteTodoById(@Param('id') id: string): TodoDTO[] {
-    todosList = todosList.filter((t) => t.id.toString() !== id);
+    todosList = todosList.filter((t) => t.id?.toString() !== id);
     return todosList;
   }
 }
